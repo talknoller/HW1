@@ -1,6 +1,25 @@
 public class Assignment01Q05 {
     public static int findShortestPath(int[][] m, int i, int j) {
-        // TODO: implement
+        if (i==j){
+            return 0;
+        }
+
+        if (m[i][j] == 1) {
+            return 1;
+        }
+        int shortestPath = Integer.MAX_VALUE;
+        for (int k = 0; k < m.length; k++) {
+            if (m[i][k] == 1) {
+                int pathLength = findShortestPath(m, k, j);
+                if (pathLength != -1 && pathLength + 1 <= shortestPath) {
+                    shortestPath = 1 + pathLength;
+                }
+            }
+        }
+        if (shortestPath != Integer.MAX_VALUE) {
+            return shortestPath;
+        }
+        
         return -1;
     }
 
